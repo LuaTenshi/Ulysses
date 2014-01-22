@@ -655,6 +655,7 @@ function ulx.ragdoll( calling_ply, target_plys, should_unragdoll )
 				ragdoll:SetModel( v:GetModel() )
 				ragdoll:Spawn()
 				ragdoll:Activate()
+				ragdoll.jailWall = true -- Without this DarkRP will allow things such as pocketing this ragdoll.
 				v:SetParent( ragdoll ) -- So their player ent will match up (position-wise) with where their ragdoll is.
 				-- Set velocity for each peice of the ragdoll
 				local j = 1
@@ -703,6 +704,7 @@ function ulx.ragdoll( calling_ply, target_plys, should_unragdoll )
 				v:SetVelocity( ragdoll:GetVelocity() )
 				local yaw = ragdoll:GetAngles().yaw
 				v:SetAngles( Angle( 0, yaw, 0 ) )
+				ragdoll.jailWall = nil
 				ragdoll:DisallowDeleting( false )
 				ragdoll:Remove()
 			end
