@@ -215,7 +215,13 @@ function ULib.getUsers( target, enable_keywords, ply )
 						end
 					end
 				end
-
+			
+				local ulx_custompiece = hook.Run( "ulx_custompiece", ply, piece )
+				if type(ulx_custompiece) == "table" and #ulx_custompiece >= 1 then
+					table.Empty(tmpTargets)
+					table.Add(tmpTargets, ulx_custompiece)
+				end
+			
 				if negate then
 					for _, player in ipairs( players ) do
 						if not table.HasValue( tmpTargets, player ) then
